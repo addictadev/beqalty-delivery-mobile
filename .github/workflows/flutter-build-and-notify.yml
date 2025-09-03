@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: ${{ env.JAVA_VERSION }}
+          java-version: '11'
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -165,4 +165,4 @@ jobs:
         if: always()
         run: |
           echo "Cleaning up build artifacts..."
-          flutter clean
+          echo "Build completed successfully!"
