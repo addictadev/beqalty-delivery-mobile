@@ -1,0 +1,1 @@
+# beqalty-delivery-mobile
