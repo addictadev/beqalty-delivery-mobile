@@ -1,4 +1,3 @@
-
 import 'package:baqaltydeliveryapp/core/navigation_services/navigation_manager.dart';
 import 'package:baqaltydeliveryapp/core/theme/app_colors.dart';
 import 'package:baqaltydeliveryapp/core/utils/responsive_utils.dart';
@@ -80,7 +79,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   }
 
   Widget _buildBackButton() {
-    return CustomBackButton(icon: Icons.chevron_left, size: 40);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        CustomBackButton(icon: Icons.chevron_left, size: 40),
+        SizedBox(width: 10.w),
+      ],
+    );
   }
 
   Widget _buildTitleSection() {

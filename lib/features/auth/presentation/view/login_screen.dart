@@ -1,4 +1,3 @@
-
 import 'package:baqaltydeliveryapp/core/images_preview/app_assets.dart';
 import 'package:baqaltydeliveryapp/core/images_preview/custom_svg_img.dart';
 import 'package:baqaltydeliveryapp/core/navigation_services/navigation_manager.dart';
@@ -8,6 +7,7 @@ import 'package:baqaltydeliveryapp/core/utils/styles/font_utils.dart';
 import 'package:baqaltydeliveryapp/core/widgets/custom_back_button.dart';
 import 'package:baqaltydeliveryapp/core/widgets/custom_textform_field.dart';
 import 'package:baqaltydeliveryapp/core/widgets/primary_button.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,7 +38,13 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               SizedBox(height: 16),
 
-              CustomBackButton(icon: Icons.chevron_left, size: 40),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomBackButton(icon: Icons.chevron_left, size: 40),
+                  SizedBox(width: 10.w),
+                ],
+              ),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -71,12 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       SizedBox(height: 32),
 
-                      PrimaryButton(
-                        text: "login".tr(),
-                        onPressed: () {
-                       
-                        },
-                      ),
+                      PrimaryButton(text: "login".tr(), onPressed: () {}),
 
                       SizedBox(height: 40),
                     ],

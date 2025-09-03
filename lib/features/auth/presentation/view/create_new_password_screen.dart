@@ -1,15 +1,15 @@
-
 import 'package:baqaltydeliveryapp/core/navigation_services/navigation_manager.dart';
 import 'package:baqaltydeliveryapp/core/theme/app_colors.dart';
 import 'package:baqaltydeliveryapp/core/utils/responsive_utils.dart';
 import 'package:baqaltydeliveryapp/core/widgets/custom_back_button.dart';
 import 'package:baqaltydeliveryapp/core/widgets/custom_textform_field.dart';
 import 'package:baqaltydeliveryapp/core/widgets/primary_button.dart';
+import 'package:baqaltydeliveryapp/features/auth/presentation/view/changed_pass_sucessfully.dart';
+import 'package:baqaltydeliveryapp/features/auth/presentation/widgets/auth_background_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
-import '../widgets/auth_background_widget.dart';
-import 'password_changed_screen.dart';
+import 'package:sizer/sizer.dart';
 
 class CreateNewPasswordScreen extends StatefulWidget {
   const CreateNewPasswordScreen({super.key});
@@ -25,7 +25,6 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
       TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-
   @override
   void dispose() {
     _passwordController.dispose();
@@ -38,54 +37,67 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
     return AuthBackgroundWidget(
       backgroundHeight: 200,
       overlayOpacity: 0.15,
-      child: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: context.responsivePadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 16),
+      child: Stack(
+        children: [
+          // Main content
+          SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: context.responsivePadding,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 16),
 
-              _buildBackButton(),
+                  _buildBackButton(),
 
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 32),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 32),
 
-                        _buildTitleSection(),
+                            _buildTitleSection(),
 
-                        SizedBox(height: 48),
+                            SizedBox(height: 48),
 
-                        _buildPasswordField(),
+                            _buildPasswordField(),
 
-                        SizedBox(height: 20),
+                            SizedBox(height: 20),
 
-                        _buildConfirmPasswordField(),
+                            _buildConfirmPasswordField(),
 
-                        SizedBox(height: 32),
+                            SizedBox(height: 32),
 
-                        _buildResetPasswordButton(),
+                            _buildResetPasswordButton(),
 
-                        SizedBox(height: 40),
-                      ],
+                            SizedBox(height: 40),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
 
   Widget _buildBackButton() {
-    return CustomBackButton(icon: Icons.chevron_left, size: 40);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        CustomBackButton(icon: Icons.chevron_left, size: 40),
+        SizedBox(width: 10.w),
+      ],
+    );
   }
 
   Widget _buildTitleSection() {
@@ -131,7 +143,8 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
         }
         return null;
       },
-     
+      borderRadius: 12,
+      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
     );
   }
 
@@ -151,7 +164,8 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
         }
         return null;
       },
-    
+      borderRadius: 12,
+      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
     );
   }
 
@@ -159,30 +173,8 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
     return PrimaryButton(
       text: "reset_password".tr(),
       onPressed: () {
-        if (_formKey.currentState!.validate()) {
-          _handlePasswordReset();
-        }
+        NavigationManager.navigateTo(ChangesPasswordSucessfullyScreen());
       },
     );
-  }
-
-  void _handlePasswordReset() {
-    // Simulate password reset
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          "password_reset_success".tr(),
-          style: GoogleFonts.robotoFlex(color: AppColors.white),
-        ),
-        backgroundColor: AppColors.success,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      ),
-    );
-
-    // Navigate to password changed success screen
-    Future.delayed(const Duration(seconds: 1), () {
-      NavigationManager.navigateToAndFinish(PasswordChangedScreen());
-    });
   }
 }

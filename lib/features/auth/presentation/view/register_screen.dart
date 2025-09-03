@@ -1,15 +1,14 @@
-
 import 'package:baqaltydeliveryapp/core/images_preview/app_assets.dart';
 import 'package:baqaltydeliveryapp/core/images_preview/custom_svg_img.dart';
+import 'package:baqaltydeliveryapp/core/navigation_services/navigation_manager.dart';
 import 'package:baqaltydeliveryapp/core/theme/app_colors.dart';
 import 'package:baqaltydeliveryapp/core/utils/responsive_utils.dart';
 import 'package:baqaltydeliveryapp/core/widgets/custom_back_button.dart';
-import 'package:baqaltydeliveryapp/core/widgets/custom_textform_field.dart';
 import 'package:baqaltydeliveryapp/core/widgets/primary_button.dart';
+import 'package:baqaltydeliveryapp/features/auth/presentation/view/sucess_register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:sizer/sizer.dart';
 import '../widgets/auth_background_widget.dart';
 
@@ -21,28 +20,14 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final TextEditingController _nameController = TextEditingController(
-    text: "Abdallah Ibrahim",
-  );
-  final TextEditingController _phoneController = TextEditingController(
-    text: "+01026329736",
-  );
-  final TextEditingController _emailController = TextEditingController(
-    text: "abdallah@addicta.com",
-  );
-  final TextEditingController _passwordController = TextEditingController(
-    text: "************",
-  );
-  final TextEditingController _confirmPasswordController =
-      TextEditingController(text: "************");
+  // Document upload states
+  String? nationalIdFront;
+  String? nationalIdBack;
+  String? driversLicense;
+  String? vehicleDocuments;
 
   @override
   void dispose() {
-    _nameController.dispose();
-    _phoneController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -94,7 +79,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Widget _buildBackButton() {
-    return CustomBackButton(icon: Icons.chevron_left, size: 40);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        CustomBackButton(icon: Icons.chevron_left, size: 40),
+        SizedBox(width: 10.w),
+      ],
+    );
   }
 
   Widget _buildWelcomeSection() {
@@ -114,11 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: 1.2,
                 fontStyle: FontStyle.italic,
               ),
-              children: [
-                TextSpan(text: "hello_register".tr()),
-                const TextSpan(text: "\n"),
-                TextSpan(text: "to_get_started".tr()),
-              ],
+              children: [TextSpan(text: "Hello! Register to get started")],
             ),
           ),
         ),
@@ -137,55 +124,163 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget _buildFormFields() {
     return Column(
       children: [
-        CustomTextFormField(
-          label: "name".tr(),
-          controller: _nameController,
-          textInputAction: TextInputAction.next,
+        _buildDocumentUploadField(
+          label: "National ID (Front)",
+          documentName: nationalIdFront ?? "Abdallah's ID",
+          hasDocument: nationalIdFront != null,
+          onUpload: () => _uploadDocument('nationalIdFront'),
+          onRemove: nationalIdFront != null
+              ? () => _removeDocument('nationalIdFront')
+              : null,
         ),
 
         SizedBox(height: 20),
 
-        CustomTextFormField(
-          label: "phone_number".tr(),
-          controller: _phoneController,
-          keyboardType: TextInputType.phone,
-          textInputAction: TextInputAction.next,
+        _buildDocumentUploadField(
+          label: "National ID (Back)",
+          documentName: nationalIdBack ?? "Abdallah's ID",
+          hasDocument: nationalIdBack != null,
+          onUpload: () => _uploadDocument('nationalIdBack'),
+          onRemove: nationalIdBack != null
+              ? () => _removeDocument('nationalIdBack')
+              : null,
         ),
 
         SizedBox(height: 20),
 
-        CustomTextFormField(
-          label: "email".tr(),
-          controller: _emailController,
-          keyboardType: TextInputType.emailAddress,
-          textInputAction: TextInputAction.next,
+        _buildDocumentUploadField(
+          label: "Driver's License",
+          documentName: driversLicense ?? "Upload Document",
+          hasDocument: driversLicense != null,
+          onUpload: () => _uploadDocument('driversLicense'),
+          onRemove: driversLicense != null
+              ? () => _removeDocument('driversLicense')
+              : null,
         ),
 
         SizedBox(height: 20),
 
-        CustomTextFormField(
-          label: "password".tr(),
-          controller: _passwordController,
-          obscureText: true,
-          showVisibilityToggle: true,
-          textInputAction: TextInputAction.next,
-        ),
-
-        SizedBox(height: 20),
-
-        CustomTextFormField(
-          label: "confirm_password".tr(),
-          controller: _confirmPasswordController,
-          obscureText: true,
-          showVisibilityToggle: true,
-          textInputAction: TextInputAction.done,
+        _buildDocumentUploadField(
+          label: "Vehicle Documents",
+          documentName: vehicleDocuments ?? "Upload Document",
+          hasDocument: vehicleDocuments != null,
+          onUpload: () => _uploadDocument('vehicleDocuments'),
+          onRemove: vehicleDocuments != null
+              ? () => _removeDocument('vehicleDocuments')
+              : null,
         ),
       ],
     );
   }
 
+  Widget _buildDocumentUploadField({
+    required String label,
+    required String documentName,
+    required bool hasDocument,
+    required VoidCallback onUpload,
+    VoidCallback? onRemove,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: GoogleFonts.robotoFlex(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: AppColors.textPrimary,
+          ),
+        ),
+        SizedBox(height: 8),
+        GestureDetector(
+          onTap: onUpload,
+          child: Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.grey.shade300),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  hasDocument ? Icons.picture_as_pdf : Icons.cloud_upload,
+                  color: hasDocument ? Colors.red : Colors.grey.shade600,
+                  size: 24,
+                ),
+                SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    documentName,
+                    style: GoogleFonts.robotoFlex(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: hasDocument
+                          ? AppColors.textPrimary
+                          : Colors.grey.shade600,
+                    ),
+                  ),
+                ),
+                if (hasDocument && onRemove != null)
+                  GestureDetector(
+                    onTap: onRemove,
+                    child: Icon(
+                      Icons.close,
+                      color: Colors.grey.shade600,
+                      size: 20,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _uploadDocument(String documentType) {
+    setState(() {
+      switch (documentType) {
+        case 'nationalIdFront':
+          nationalIdFront = "Abdallah's ID";
+          break;
+        case 'nationalIdBack':
+          nationalIdBack = "Abdallah's ID";
+          break;
+        case 'driversLicense':
+          driversLicense = "Driver's License Document";
+          break;
+        case 'vehicleDocuments':
+          vehicleDocuments = "Vehicle Registration";
+          break;
+      }
+    });
+  }
+
+  void _removeDocument(String documentType) {
+    setState(() {
+      switch (documentType) {
+        case 'nationalIdFront':
+          nationalIdFront = null;
+          break;
+        case 'nationalIdBack':
+          nationalIdBack = null;
+          break;
+        case 'driversLicense':
+          driversLicense = null;
+          break;
+        case 'vehicleDocuments':
+          vehicleDocuments = null;
+          break;
+      }
+    });
+  }
+
   Widget _buildRegisterButton() {
-    return PrimaryButton(text: "register".tr(), onPressed: () {});
+    return PrimaryButton(text: "Register", onPressed: () {
+      NavigationManager.navigateTo(SucessRegisterScreen());
+    });
   }
 
   Widget _buildLoginLink() {
@@ -198,9 +293,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             color: AppColors.textSecondary,
           ),
           children: [
-            TextSpan(text: "already_have_account".tr()),
+            TextSpan(text: "Already have an account? "),
             TextSpan(
-              text: "login_now".tr(),
+              text: "Login Now",
               style: GoogleFonts.robotoFlex(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
