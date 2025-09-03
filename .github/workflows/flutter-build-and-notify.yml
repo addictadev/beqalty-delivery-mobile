@@ -46,33 +46,32 @@ jobs:
         env:
           FLUTTER_BUILD_NUMBER: ${{ github.run_number }}
 
-      - name: Upload APK to Slack
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          channel: '#app-builds'
-          text: |
-            🚀 *New Flutter App Build Available!*
-            
-            *Repository:* ${{ github.repository }}
-            *Branch:* ${{ github.ref_name }}
-            *Commit:* ${{ github.sha }}
-            *Author:* ${{ github.actor }}
-            *Message:* ${{ github.event.head_commit.message }}
-            
-            *Build Number:* #${{ github.run_number }}
-            *Status:* ${{ job.status }}
-            
-            📱 *APK File:* `app-release.apk`
-            
-            *Download Link:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts
-            
-            🎯 *Next Steps:*
-            • Download the APK from GitHub Actions
-            • Test on device
-            • Deploy to team members
-            
-            _Built automatically by GitHub Actions_ 🛠️
+      - name: Create WhatsApp Message
+        run: |
+          echo "🚀 *New Flutter App Build Available!*" > whatsapp_message.txt
+          echo "" >> whatsapp_message.txt
+          echo "*Repository:* ${{ github.repository }}" >> whatsapp_message.txt
+          echo "*Branch:* ${{ github.ref_name }}" >> whatsapp_message.txt
+          echo "*Commit:* ${{ github.sha }}" >> whatsapp_message.txt
+          echo "*Author:* ${{ github.actor }}" >> whatsapp_message.txt
+          echo "*Message:* ${{ github.event.head_commit.message }}" >> whatsapp_message.txt
+          echo "" >> whatsapp_message.txt
+          echo "*Build Number:* #${{ github.run_number }}" >> whatsapp_message.txt
+          echo "*Status:* ${{ job.status }}" >> whatsapp_message.txt
+          echo "" >> whatsapp_message.txt
+          echo "📱 *APK File:* app-release.apk" >> whatsapp_message.txt
+          echo "" >> whatsapp_message.txt
+          echo "*Download Link:*" >> whatsapp_message.txt
+          echo "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" >> whatsapp_message.txt
+          echo "" >> whatsapp_message.txt
+          echo "🎯 *Next Steps:*" >> whatsapp_message.txt
+          echo "• Download the APK from GitHub Actions" >> whatsapp_message.txt
+          echo "• Test on device" >> whatsapp_message.txt
+          echo "• Deploy to team members" >> whatsapp_message.txt
+          echo "" >> whatsapp_message.txt
+          echo "_Built automatically by GitHub Actions_ 🛠️" >> whatsapp_message.txt
+          echo "" >> whatsapp_message.txt
+          echo "📞 *Contact:* +201156165689" >> whatsapp_message.txt
 
       - name: Upload APK as Artifact
         uses: actions/upload-artifact@v4
@@ -113,50 +112,58 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Notify Team on Success
+      - name: Create Success Message
         if: success()
-        uses: 8398a7/action-slack@v3
-        with:
-          status: success
-          channel: '#team-notifications'
-          text: |
-            ✅ *Build Successful!*
-            
-            🎉 *Flutter App Build Completed Successfully*
-            
-            *Repository:* ${{ github.repository }}
-            *Branch:* ${{ github.ref_name }}
-            *Build Number:* #${{ github.run_number }}
-            
-            📱 *APK Ready for Download*
-            
-            *Download from:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts
-            
-            🚀 *Ready for Testing & Deployment!*
+        run: |
+          echo "✅ *Build Successful!*" > success_message.txt
+          echo "" >> success_message.txt
+          echo "🎉 *Flutter App Build Completed Successfully*" >> success_message.txt
+          echo "" >> success_message.txt
+          echo "*Repository:* ${{ github.repository }}" >> success_message.txt
+          echo "*Branch:* ${{ github.ref_name }}" >> success_message.txt
+          echo "*Build Number:* #${{ github.run_number }}" >> success_message.txt
+          echo "" >> success_message.txt
+          echo "📱 *APK Ready for Download*" >> success_message.txt
+          echo "" >> success_message.txt
+          echo "*Download from:*" >> success_message.txt
+          echo "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" >> success_message.txt
+          echo "" >> success_message.txt
+          echo "🚀 *Ready for Testing & Deployment!*" >> success_message.txt
+          echo "" >> success_message.txt
+          echo "📞 *Contact:* +201156165689" >> success_message.txt
 
-      - name: Notify Team on Failure
+      - name: Create Failure Message
         if: failure()
-        uses: 8398a7/action-slack@v3
+        run: |
+          echo "❌ *Build Failed!*" > failure_message.txt
+          echo "" >> failure_message.txt
+          echo "🚨 *Flutter App Build Failed*" >> failure_message.txt
+          echo "" >> failure_message.txt
+          echo "*Repository:* ${{ github.repository }}" >> failure_message.txt
+          echo "*Branch:* ${{ github.ref_name }}" >> failure_message.txt
+          echo "*Build Number:* #${{ github.run_number }}" >> failure_message.txt
+          echo "" >> failure_message.txt
+          echo "*Error Details:* Check the GitHub Actions logs for more information." >> failure_message.txt
+          echo "" >> failure_message.txt
+          echo "🔍 *Next Steps:*" >> failure_message.txt
+          echo "• Review the build logs" >> failure_message.txt
+          echo "• Fix any compilation errors" >> failure_message.txt
+          echo "• Re-run the build" >> failure_message.txt
+          echo "" >> failure_message.txt
+          echo "*Build Logs:*" >> failure_message.txt
+          echo "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> failure_message.txt
+          echo "" >> failure_message.txt
+          echo "📞 *Contact:* +201156165689" >> failure_message.txt
+
+      - name: Upload WhatsApp Messages as Artifacts
+        uses: actions/upload-artifact@v4
         with:
-          status: failure
-          channel: '#team-notifications'
-          text: |
-            ❌ *Build Failed!*
-            
-            🚨 *Flutter App Build Failed*
-            
-            *Repository:* ${{ github.repository }}
-            *Branch:* ${{ github.ref_name }}
-            *Build Number:* #${{ github.run_number }}
-            
-            *Error Details:* Check the GitHub Actions logs for more information.
-            
-            🔍 *Next Steps:*
-            • Review the build logs
-            • Fix any compilation errors
-            • Re-run the build
-            
-            *Build Logs:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          name: whatsapp-notifications
+          path: |
+            whatsapp_message.txt
+            success_message.txt
+            failure_message.txt
+          retention-days: 7
 
       - name: Clean up
         if: always()
