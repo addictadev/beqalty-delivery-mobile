@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
+/// 🚀 CI/CD: This widget is now part of our automated build pipeline!
+/// Every push will trigger automatic APK building and WhatsApp notifications.
 class CurrentOrderWidget extends StatelessWidget {
   final VoidCallback? onContactPressed;
 
