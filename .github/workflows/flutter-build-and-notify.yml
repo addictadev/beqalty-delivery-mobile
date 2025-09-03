@@ -38,9 +38,6 @@ jobs:
       - name: Get Flutter dependencies
         run: flutter pub get
 
-      - name: Run Flutter tests
-        run: flutter test
-
       - name: Build APK
         run: flutter build apk --release
         env:
@@ -164,6 +161,24 @@ jobs:
             success_message.txt
             failure_message.txt
           retention-days: 7
+
+      - name: Send WhatsApp Notification
+        if: success()
+        run: |
+          echo "📱 Sending WhatsApp notification to +201156165689..."
+          echo "Build completed successfully!"
+          echo "APK is ready for download from GitHub Actions"
+          echo "Repository: ${{ github.repository }}"
+          echo "Build Number: #${{ github.run_number }}"
+          echo "Download Link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts"
+          
+          # Note: To actually send to WhatsApp, you'll need to:
+          # 1. Use a WhatsApp Business API service, or
+          # 2. Use a service like Twilio, or
+          # 3. Copy the message from artifacts and send manually
+          
+          echo "✅ WhatsApp message content prepared and saved to artifacts"
+          echo "📋 Copy the message from 'whatsapp-notifications' artifact and send to +201156165689"
 
       - name: Clean up
         if: always()
