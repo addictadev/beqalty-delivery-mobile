@@ -173,5 +173,17 @@
     "reviewing_details_notification": "نحن نراجع تفاصيلك.\nستتم إشعارك بمجرد الموافقة على حسابك.",
     "create_new_password": "إنشاء كلمة مرور جديدة",
     "password_requirement": "يجب أن تكون كلمة المرور الجديدة فريدة من تلك المستخدمة سابقاً.",
-    "reset_password": "إعادة تعيين كلمة المرور"
+    "reset_password": "إعادة تعيين كلمة المرور",
+    "hello_register_to_get_started": "مرحباً! سجل للبدء",
+    "national_id_front": "الهوية الوطنية (الوجه)",
+    "national_id_back": "الهوية الوطنية (الظهر)",
+    "drivers_license": "رخصة القيادة",
+    "vehicle_documents": "مستندات المركبة",
+    "abdallah_id": "هوية عبدالله",
+    "upload_document": "رفع مستند",
+    "drivers_license_document": "مستند رخصة القيادة",
+    "vehicle_registration": "تسجيل المركبة",
+    "earnings": "الأرباح",
+    "history": "السجل",
+    "alerts": "التنبيهات"
   }

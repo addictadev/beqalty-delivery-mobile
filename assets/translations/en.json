@@ -191,7 +191,18 @@
     "keep_shopping": "Keep Shopping",
     "your_account_under_review": "Your account is under\nReview.",
     "reviewing_details_notification": "We're reviewing your details.\nYou'll get notified once your account is approved.",
-    "create_new_password": "Create new password",
-    "password_requirement": "Your new password must be unique from those previously used.",
-    "reset_password": "Reset Password"
+ 
+    "hello_register_to_get_started": "Hello! Register to get started",
+    "national_id_front": "National ID (Front)",
+    "national_id_back": "National ID (Back)",
+    "drivers_license": "Driver's License",
+    "vehicle_documents": "Vehicle Documents",
+    "abdallah_id": "Abdallah's ID",
+    "upload_document": "Upload Document",
+    "drivers_license_document": "Driver's License Document",
+    "vehicle_registration": "Vehicle Registration",
+    "earnings": "Earnings",
+    "history": "History",
+    "alerts": "Alerts",
+    "profile": "Profile"
   }

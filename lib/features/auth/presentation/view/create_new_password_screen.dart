@@ -7,7 +7,6 @@ import 'package:baqaltydeliveryapp/core/widgets/primary_button.dart';
 import 'package:baqaltydeliveryapp/features/auth/presentation/view/changed_pass_sucessfully.dart';
 import 'package:baqaltydeliveryapp/features/auth/presentation/widgets/auth_background_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:sizer/sizer.dart';
 
@@ -106,7 +105,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
       children: [
         Text(
           "create_new_password".tr(),
-          style: GoogleFonts.robotoFlex(
+          style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.w700,
             color: AppColors.textPrimary,
@@ -116,7 +115,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
         SizedBox(height: 12),
         Text(
           "password_requirement".tr(),
-          style: GoogleFonts.robotoFlex(
+          style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
             color: AppColors.textSecondary,

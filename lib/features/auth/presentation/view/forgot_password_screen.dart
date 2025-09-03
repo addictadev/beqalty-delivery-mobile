@@ -6,7 +6,6 @@ import 'package:baqaltydeliveryapp/core/widgets/custom_textform_field.dart';
 import 'package:baqaltydeliveryapp/core/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:sizer/sizer.dart';
 import '../widgets/auth_background_widget.dart';
@@ -94,7 +93,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       children: [
         Text(
           "forgot_password_title".tr(),
-          style: GoogleFonts.robotoFlex(
+          style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.w700,
             color: AppColors.textPrimary,
@@ -104,7 +103,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         SizedBox(height: 12),
         Text(
           "forgot_password_description".tr(),
-          style: GoogleFonts.robotoFlex(
+          style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
             color: AppColors.textSecondary,
@@ -138,7 +137,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return Center(
       child: RichText(
         text: TextSpan(
-          style: GoogleFonts.robotoFlex(
+          style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
             color: AppColors.textSecondary,
@@ -147,7 +146,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             TextSpan(text: "remember_password".tr()),
             TextSpan(
               text: "login".tr(),
-              style: GoogleFonts.robotoFlex(
+              style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: AppColors.primary,

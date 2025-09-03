@@ -5,7 +5,6 @@ import 'package:baqaltydeliveryapp/core/theme/app_colors.dart';
 import 'package:baqaltydeliveryapp/features/auth/presentation/view/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:baqaltydeliveryapp/core/widgets/primary_button.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
 class ChangesPasswordSucessfullyScreen extends StatefulWidget {
@@ -82,7 +81,7 @@ class _ChangesPasswordSucessfullyScreenState
     return Text(
       "password_changed".tr(),
       textAlign: TextAlign.center,
-      style: GoogleFonts.robotoFlex(
+      style: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.bold,
         color: Colors.black87,
@@ -95,7 +94,7 @@ class _ChangesPasswordSucessfullyScreenState
     return Text(
       "password_changed_success".tr(),
       textAlign: TextAlign.center,
-      style: GoogleFonts.robotoFlex(
+      style: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w400,
         color: Colors.grey.shade600,

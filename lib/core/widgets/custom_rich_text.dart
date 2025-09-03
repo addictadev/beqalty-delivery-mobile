@@ -1,6 +1,5 @@
 import 'package:baqaltydeliveryapp/core/utils/styles/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CustomRichText extends StatelessWidget {
   const CustomRichText({
@@ -31,7 +30,7 @@ class CustomRichText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Default style for welcome text
-    final defaultStyle = GoogleFonts.robotoFlex(
+    final defaultStyle = TextStyle(
       fontSize: 28,
       fontWeight: FontWeight.w700,
       color: const Color(0xFF1A1A1A),
@@ -89,7 +88,7 @@ class WelcomeText extends StatelessWidget {
   Widget build(BuildContext context) {
     final style =
         textStyle ??
-        GoogleFonts.robotoFlex(
+        TextStyle(
           fontSize: 28,
           fontWeight: FontWeight.w700,
           color: const Color(0xFF1A1A1A),

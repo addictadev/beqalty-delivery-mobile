@@ -7,6 +7,7 @@ import 'package:baqaltydeliveryapp/core/utils/styles/font_utils.dart';
 import 'package:baqaltydeliveryapp/core/widgets/custom_back_button.dart';
 import 'package:baqaltydeliveryapp/core/widgets/custom_textform_field.dart';
 import 'package:baqaltydeliveryapp/core/widgets/primary_button.dart';
+import 'package:baqaltydeliveryapp/features/nav_bar/presentation/view/main_navigation_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
@@ -77,7 +78,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       SizedBox(height: 32),
 
-                      PrimaryButton(text: "login".tr(), onPressed: () {}),
+                      PrimaryButton(
+                        text: "login".tr(),
+                        onPressed: () {
+                          NavigationManager.navigateTo(MainNavigationScreen());
+                        },
+                      ),
 
                       SizedBox(height: 40),
                     ],
@@ -118,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 1.2,
                         fontStyle: FontStyle.italic,
                       )
-                    : GoogleFonts.robotoFlex(
+                    : TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
                         color: AppColors.black,
@@ -149,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
         },
         child: Text(
           "forgot_password".tr(),
-          style: GoogleFonts.robotoFlex(
+          style: TextStyle(
             fontSize: FontSizes.s14,
             color: AppColors.primary,
             fontWeight: FontWeight.w600,
@@ -163,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Center(
       child: RichText(
         text: TextSpan(
-          style: GoogleFonts.robotoFlex(
+          style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
             color: AppColors.textSecondary,
@@ -172,7 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
             TextSpan(text: "dont_have_account".tr()),
             TextSpan(
               text: "register_now".tr(),
-              style: GoogleFonts.robotoFlex(
+              style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: AppColors.primary,

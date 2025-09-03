@@ -8,7 +8,7 @@ import 'package:baqaltydeliveryapp/core/widgets/primary_button.dart';
 import 'package:baqaltydeliveryapp/features/auth/presentation/view/sucess_register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:sizer/sizer.dart';
 import '../widgets/auth_background_widget.dart';
 
@@ -98,14 +98,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
         Expanded(
           child: RichText(
             text: TextSpan(
-              style: GoogleFonts.robotoFlex(
+              style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 color: AppColors.textPrimary,
                 height: 1.2,
                 fontStyle: FontStyle.italic,
               ),
-              children: [TextSpan(text: "Hello! Register to get started")],
+              children: [TextSpan(text: "hello_register_to_get_started".tr())],
             ),
           ),
         ),
@@ -125,8 +125,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       children: [
         _buildDocumentUploadField(
-          label: "National ID (Front)",
-          documentName: nationalIdFront ?? "Abdallah's ID",
+          label: "national_id_front".tr(),
+          documentName: nationalIdFront ?? "abdallah_id".tr(),
           hasDocument: nationalIdFront != null,
           onUpload: () => _uploadDocument('nationalIdFront'),
           onRemove: nationalIdFront != null
@@ -137,8 +137,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         SizedBox(height: 20),
 
         _buildDocumentUploadField(
-          label: "National ID (Back)",
-          documentName: nationalIdBack ?? "Abdallah's ID",
+          label: "national_id_back".tr(),
+          documentName: nationalIdBack ?? "abdallah_id".tr(),
           hasDocument: nationalIdBack != null,
           onUpload: () => _uploadDocument('nationalIdBack'),
           onRemove: nationalIdBack != null
@@ -149,8 +149,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         SizedBox(height: 20),
 
         _buildDocumentUploadField(
-          label: "Driver's License",
-          documentName: driversLicense ?? "Upload Document",
+          label: "drivers_license".tr(),
+          documentName: driversLicense ?? "upload_document".tr(),
           hasDocument: driversLicense != null,
           onUpload: () => _uploadDocument('driversLicense'),
           onRemove: driversLicense != null
@@ -161,8 +161,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         SizedBox(height: 20),
 
         _buildDocumentUploadField(
-          label: "Vehicle Documents",
-          documentName: vehicleDocuments ?? "Upload Document",
+          label: "vehicle_documents".tr(),
+          documentName: vehicleDocuments ?? "upload_document".tr(),
           hasDocument: vehicleDocuments != null,
           onUpload: () => _uploadDocument('vehicleDocuments'),
           onRemove: vehicleDocuments != null
@@ -185,7 +185,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       children: [
         Text(
           label,
-          style: GoogleFonts.robotoFlex(
+          style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
             color: AppColors.textPrimary,
@@ -213,7 +213,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Expanded(
                   child: Text(
                     documentName,
-                    style: GoogleFonts.robotoFlex(
+                    style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: hasDocument
@@ -243,16 +243,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
     setState(() {
       switch (documentType) {
         case 'nationalIdFront':
-          nationalIdFront = "Abdallah's ID";
+          nationalIdFront = "abdallah_id".tr();
           break;
         case 'nationalIdBack':
-          nationalIdBack = "Abdallah's ID";
+          nationalIdBack = "abdallah_id".tr();
           break;
         case 'driversLicense':
-          driversLicense = "Driver's License Document";
+          driversLicense = "drivers_license_document".tr();
           break;
         case 'vehicleDocuments':
-          vehicleDocuments = "Vehicle Registration";
+          vehicleDocuments = "vehicle_registration".tr();
           break;
       }
     });
@@ -278,25 +278,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Widget _buildRegisterButton() {
-    return PrimaryButton(text: "Register", onPressed: () {
-      NavigationManager.navigateTo(SucessRegisterScreen());
-    });
+    return PrimaryButton(
+      text: "register".tr(),
+      onPressed: () {
+        NavigationManager.navigateTo(SucessRegisterScreen());
+      },
+    );
   }
 
   Widget _buildLoginLink() {
     return Center(
       child: RichText(
         text: TextSpan(
-          style: GoogleFonts.robotoFlex(
+          style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
             color: AppColors.textSecondary,
           ),
           children: [
-            TextSpan(text: "Already have an account? "),
+            TextSpan(text: "already_have_account".tr()),
             TextSpan(
-              text: "Login Now",
-              style: GoogleFonts.robotoFlex(
+              text: "login_now".tr(),
+              style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: AppColors.textPrimary,

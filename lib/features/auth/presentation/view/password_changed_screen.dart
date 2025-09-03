@@ -3,7 +3,6 @@ import 'package:baqaltydeliveryapp/core/navigation_services/navigation_manager.d
 import 'package:baqaltydeliveryapp/core/theme/app_colors.dart';
 import 'package:baqaltydeliveryapp/core/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:sizer/sizer.dart';
 import 'login_screen.dart';
@@ -209,7 +208,7 @@ class _PasswordChangedScreenState extends State<PasswordChangedScreen>
           // Title
           Text(
             "password_changed".tr(),
-            style: GoogleFonts.robotoFlex(
+            style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w700,
               color: AppColors.textPrimary,
@@ -223,7 +222,7 @@ class _PasswordChangedScreenState extends State<PasswordChangedScreen>
           // Description
           Text(
             "password_changed_success".tr(),
-            style: GoogleFonts.robotoFlex(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w400,
               color: AppColors.textSecondary,
