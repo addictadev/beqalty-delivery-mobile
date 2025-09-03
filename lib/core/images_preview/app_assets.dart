@@ -21,5 +21,6 @@ class AppAssets {
   static const String earningIcon = "$_iconsPath/earning_icon.svg";
   static const String historyIcon = "$_iconsPath/history.svg";
   static const String profileIcon = "$_iconsPath/profile_icon.svg";
+  static const String motorcycleIcon = "$_iconsPath/motocycle_icon.svg";
 
 }

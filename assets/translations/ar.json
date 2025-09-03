@@ -58,6 +58,7 @@
     "settings": "الإعدادات",
     "help_center": "مركز المساعدة",
     "contact": "اتصل بنا",
+    "navigate": "تنقل",
     "general": "عام",
     "security": "الأمان",
     "notifications": "الإشعارات",
@@ -185,5 +186,11 @@
     "vehicle_registration": "تسجيل المركبة",
     "earnings": "الأرباح",
     "history": "السجل",
-    "alerts": "التنبيهات"
+    "alerts": "التنبيهات",
+    "today_earnings": "الأرباح اليومية",
+    "ready_to_deliver": "هل جاهز للتوصيل؟",
+    "current_order": "الطلب الحالي",
+    "order_number": "طلب رقم #BAQ10245",
+    "route_mcdonalds_maadi": "ماكدونالدز → المعادي",
+    "time_remaining": "متبقي 12 دقيقة"
   }

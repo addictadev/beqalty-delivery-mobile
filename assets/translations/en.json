@@ -87,6 +87,7 @@
     "settings": "Settings",
     "help_center": "Help Center",
     "contact": "Contact",
+    "navigate": "Navigate",
     "general": "General",
     "security": "Security",
     "notifications": "Notifications",
@@ -204,5 +205,11 @@
     "earnings": "Earnings",
     "history": "History",
     "alerts": "Alerts",
-    "profile": "Profile"
+    "profile": "Profile",
+    "today_earnings": "Today's Earnings",
+    "ready_to_deliver": "Ready to Deliver?",
+    "current_order": "Current Order",
+    "order_number": "Order #BAQ10245",
+    "route_mcdonalds_maadi": "McDonald's → Maadi",
+    "time_remaining": "12 min left"
   }
