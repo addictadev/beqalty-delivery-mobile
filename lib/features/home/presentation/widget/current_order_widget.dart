@@ -9,8 +9,9 @@ import 'package:localize_and_translate/localize_and_translate.dart';
 /// 🚀 CI/CD: This widget is now part of our automated build pipeline!
 /// Every push will trigger automatic APK building and WhatsApp notifications.
 /// 📱 WhatsApp integration ready with phone number: +201156165689
-/// ✅ Flutter 3.19.0 compatible - SDK requirement ^3.9.0
+/// ✅ Flutter 3.35.2 compatible - SDK requirement ^3.9.0
 /// 🧹 Cleanup step fixed - no more flutter command not found errors
+/// 🔧 Pubspec dependency issues resolved
 class CurrentOrderWidget extends StatelessWidget {
   final VoidCallback? onContactPressed;
 
