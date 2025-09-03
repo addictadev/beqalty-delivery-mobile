@@ -13,6 +13,7 @@ import 'package:localize_and_translate/localize_and_translate.dart';
 /// 🧹 Cleanup step fixed - no more flutter command not found errors
 /// 🔧 Pubspec dependency issues resolved
 /// ✅ Code analysis step removed - no more deprecated code errors
+/// 🔧 Java 17 setup - Android Gradle plugin compatibility fixed
 class CurrentOrderWidget extends StatelessWidget {
   final VoidCallback? onContactPressed;
 
