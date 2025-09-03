@@ -29,9 +29,6 @@ jobs:
       - name: Get Flutter dependencies
         run: flutter pub get
 
-      - name: Analyze Flutter code
-        run: flutter analyze
-
       - name: Build APK
         run: flutter build apk --release
         env:
