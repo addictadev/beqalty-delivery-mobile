@@ -1,4 +1,4 @@
-import 'package:baqaltydeliveryapp/features/earnings/domain/models/earning_entry.dart';
+import 'package:baqaltydeliveryapp/features/earnings/presentation/cubit/earning_entry.dart';
 
 class SampleEarnings {
   static List<EarningEntry> getSampleEarnings() {
@@ -26,7 +26,7 @@ class SampleEarnings {
         amount: 34,
         date: today,
       ),
-      
+
       // Yesterday's earnings
       EarningEntry(
         orderId: '#BAQ10247',

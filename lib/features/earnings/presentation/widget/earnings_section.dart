@@ -1,5 +1,5 @@
 import 'package:baqaltydeliveryapp/core/theme/app_colors.dart';
-import 'package:baqaltydeliveryapp/features/earnings/domain/models/earning_entry.dart';
+import 'package:baqaltydeliveryapp/features/earnings/presentation/cubit/earning_entry.dart';
 import 'package:baqaltydeliveryapp/features/earnings/presentation/widget/earning_card.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -28,16 +28,15 @@ class EarningsSection extends StatelessWidget {
           child: Text(
             title,
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: AppColors.earningsSectionLabel,
+              color: AppColors.textSecondary,
             ),
           ),
         ),
-        ...earnings.map((earning) => EarningCard(
-          earning: earning,
-          onTap: onCardTap,
-        )),
+        ...earnings.map(
+          (earning) => EarningCard(earning: earning, onTap: onCardTap),
+        ),
       ],
     );
   }

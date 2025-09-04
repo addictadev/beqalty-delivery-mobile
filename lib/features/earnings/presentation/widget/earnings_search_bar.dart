@@ -4,18 +4,9 @@ import 'package:iconsax/iconsax.dart';
 import 'package:sizer/sizer.dart';
 
 class EarningsSearchBar extends StatelessWidget {
-  final TextEditingController? controller;
-  final ValueChanged<String>? onChanged;
   final VoidCallback? onTap;
-  final bool readOnly;
 
-  const EarningsSearchBar({
-    super.key,
-    this.controller,
-    this.onChanged,
-    this.onTap,
-    this.readOnly = false,
-  });
+  const EarningsSearchBar({super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +16,7 @@ class EarningsSearchBar extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.earningsSearchBackground,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.earningsSearchBorder,
-          width: 1,
-        ),
+        border: Border.all(color: AppColors.earningsSearchBorder, width: 1),
       ),
       child: Material(
         color: Colors.transparent,
@@ -46,23 +34,11 @@ class EarningsSearchBar extends StatelessWidget {
                 ),
                 SizedBox(width: 3.w),
                 Expanded(
-                  child: TextField(
-                    controller: controller,
-                    onChanged: onChanged,
-                    readOnly: readOnly,
-                    decoration: InputDecoration(
-                      hintText: 'Search Earnings',
-                      hintStyle: TextStyle(
-                        fontSize: 16,
-                        color: AppColors.textSecondary,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.zero,
-                    ),
+                  child: Text(
+                    'Search Earnings',
                     style: TextStyle(
                       fontSize: 16,
-                      color: AppColors.textPrimary,
+                      color: AppColors.textSecondary,
                       fontWeight: FontWeight.w400,
                     ),
                   ),

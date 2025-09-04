@@ -2,9 +2,12 @@ import 'package:baqaltydeliveryapp/core/theme/app_colors.dart';
 import 'package:baqaltydeliveryapp/core/utils/responsive_utils.dart';
 import 'package:baqaltydeliveryapp/core/utils/styles/styles.dart';
 import 'package:baqaltydeliveryapp/core/widgets/exit_popup.dart';
+import 'package:baqaltydeliveryapp/features/earnings/presentation/view/earnings_screen.dart';
+import 'package:baqaltydeliveryapp/features/history/presentation/view/history_screen.dart';
 import 'package:baqaltydeliveryapp/features/home/presentation/view/home_screen.dart';
 import 'package:baqaltydeliveryapp/features/nav_bar/business/cubit/nav_bar_cubit.dart';
 import 'package:baqaltydeliveryapp/features/nav_bar/business/models/nav_item_model.dart';
+import 'package:baqaltydeliveryapp/features/replacements/presentation/view/replace_items_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
@@ -27,9 +30,9 @@ class MainNavigationScreenBody extends StatelessWidget {
 
   static final List<Widget> _screens = [
     HomeView(),
-    Container(),
-    Container(),
-    Container(),
+    EarningsScreen(),
+    HistoryScreen(),
+    ReplaceItemsScreen(),
     Container(),
   ];
 

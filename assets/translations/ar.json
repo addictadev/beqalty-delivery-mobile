@@ -102,6 +102,19 @@
     "egp": "ج.م",
     "all_categories": "جميع الفئات",
     "search_transactions": "البحث في المعاملات",
+    "search_history": "البحث في التاريخ",
+    "no_history_found": "لم يتم العثور على تاريخ",
+    "start_delivering_message": "ابدأ التوصيل لرؤية تاريخك هنا",
+    "filter_history": "تصفية التاريخ",
+    "all_orders": "جميع الطلبات",
+    "delivered_orders": "الطلبات الموصلة",
+    "failed_orders": "الطلبات الفاشلة",
+    "replace_items": "استبدال العناصر",
+    "order_items": "عناصر الطلب",
+    "ask_to_replace": "اطلب الاستبدال",
+    "confirm_replacement": "تأكيد الاستبدال",
+    "replacement_confirmation_message": "هل أنت متأكد من أنك تريد طلب استبدال العناصر المحددة؟",
+    "replacement_request_sent": "تم إرسال طلب الاستبدال بنجاح!",
    
     "dairy": "ألبان",
     "grains": "حبوب",
@@ -192,5 +205,8 @@
     "current_order": "الطلب الحالي",
     "order_number": "طلب رقم #BAQ10245",
     "route_mcdonalds_maadi": "ماكدونالدز → المعادي",
-    "time_remaining": "متبقي 12 دقيقة"
+    "time_remaining": "متبقي 12 دقيقة",
+    "search_earnings": "البحث في الأرباح",
+    "today": "اليوم",
+    "yesterday": "اليوم السابق"
   }

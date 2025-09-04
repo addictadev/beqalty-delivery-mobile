@@ -1,5 +1,5 @@
 import 'package:baqaltydeliveryapp/core/theme/app_colors.dart';
-import 'package:baqaltydeliveryapp/features/earnings/domain/models/earning_entry.dart';
+import 'package:baqaltydeliveryapp/features/earnings/presentation/cubit/earning_entry.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

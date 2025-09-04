@@ -5,6 +5,13 @@ on:
     branches: [ main, dev ]
   pull_request:
     branches: [ main, dev ]
+  workflow_dispatch: # Allow manual triggering
+
+permissions:
+  contents: read
+  actions: read
+  packages: read
+  id-token: write
 
 jobs:
   build-and-notify:
@@ -13,6 +20,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -21,7 +30,7 @@ jobs:
           java-version: '17'
 
       - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@v4
         with:
           flutter-version: '3.35.2'
           channel: 'stable'
@@ -103,14 +112,14 @@ jobs:
           echo "*Error Details:* Check the GitHub Actions logs for more information." >> failure_message.txt
           echo "" >> failure_message.txt
           echo "🔍 *Next Steps:*" >> failure_message.txt
-          echo "• Review the build logs" >> failure_message.txt
-          echo "• Fix any compilation errors" >> failure_message.txt
-          echo "• Re-run the build" >> failure_message.txt
-          echo "" >> failure_message.txt
-          echo "*Build Logs:*" >> failure_message.txt
-          echo "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> failure_message.txt
-          echo "" >> failure_message.txt
-          echo "📞 *Contact:* +201156165689" >> failure_message.txt
+          echo "• Review the build logs" >> success_message.txt
+          echo "• Fix any compilation errors" >> success_message.txt
+          echo "• Re-run the build" >> success_message.txt
+          echo "" >> success_message.txt
+          echo "*Build Logs:*" >> success_message.txt
+          echo "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> success_message.txt
+          echo "" >> success_message.txt
+          echo "📞 *Contact:* +201156165689" >> success_message.txt
 
       - name: Upload All WhatsApp Messages as Artifacts
         uses: actions/upload-artifact@v4

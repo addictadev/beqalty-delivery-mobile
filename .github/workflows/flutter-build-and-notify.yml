@@ -1,10 +1,15 @@
 name: Flutter Build & WhatsApp Notification
 
+# DISABLED - Commented out to prevent automatic triggers
 on:
   push:
     branches: [ main, dev ]
   pull_request:
     branches: [ main, dev ]
+
+# on:
+#   # Manual workflow dispatch only
+#   workflow_dispatch:
 
 jobs:
   build-and-notify:
