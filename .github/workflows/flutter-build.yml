@@ -1,11 +1,11 @@
-name: Flutter Build
+name: Flutter Build for Testers
 
 on:
   push:
     branches: [ main, dev ]
   pull_request:
     branches: [ main, dev ]
-  workflow_dispatch:
+  workflow_dispatch: # Manual trigger
 
 permissions:
   contents: read
@@ -37,7 +37,7 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
-      - name: Upload APK as Artifact
+      - name: Upload APK for Testers
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
@@ -47,5 +47,6 @@ jobs:
       - name: Build Summary
         run: |
           echo "✅ Build completed successfully!"
-          echo "📱 APK available for download"
-          echo "🔗 Download from: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts"
+          echo "📱 APK ready for testers"
+          echo "📥 Download from: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts"
+          echo "🔗 Direct link: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts"

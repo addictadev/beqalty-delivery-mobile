@@ -1,17 +1,13 @@
-name: Flutter Build & WhatsApp Notification
+name: Flutter Build with WhatsApp Notification
 
 on:
   push:
     branches: [ main, dev ]
-  pull_request:
-    branches: [ main, dev ]
-  workflow_dispatch: # Allow manual triggering
+  workflow_dispatch: # Manual trigger
 
 permissions:
   contents: read
   actions: read
-  packages: read
-  id-token: write
 
 jobs:
   build-and-notify:
@@ -20,8 +16,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Java
         uses: actions/setup-java@v3
@@ -40,99 +34,38 @@ jobs:
 
       - name: Build APK
         run: flutter build apk --release
-        env:
-          FLUTTER_BUILD_NUMBER: ${{ github.run_number }}
 
-      - name: Upload APK as Artifact
+      - name: Upload APK for Testers
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
           retention-days: 30
 
-      - name: Create WhatsApp Message
+      - name: Create Simple Notification
         run: |
-          echo "🚀 *New Flutter App Build Available!*" > whatsapp_message.txt
-          echo "" >> whatsapp_message.txt
-          echo "*Repository:* ${{ github.repository }}" >> whatsapp_message.txt
-          echo "*Branch:* ${{ github.ref_name }}" >> whatsapp_message.txt
-          echo "*Build Number:* #${{ github.run_number }}" >> whatsapp_message.txt
-          echo "*Status:* ${{ job.status }}" >> whatsapp_message.txt
-          echo "" >> whatsapp_message.txt
-          echo "📱 *APK File:* app-release.apk" >> whatsapp_message.txt
-          echo "" >> whatsapp_message.txt
-          echo "*Download Link:*" >> whatsapp_message.txt
-          echo "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" >> whatsapp_message.txt
-          echo "" >> whatsapp_message.txt
-          echo "🎯 *Next Steps:*" >> whatsapp_message.txt
-          echo "• Download the APK from GitHub Actions" >> whatsapp_message.txt
-          echo "• Test on device" >> whatsapp_message.txt
-          echo "• Deploy to team members" >> whatsapp_message.txt
-          echo "" >> whatsapp_message.txt
-          echo "_Built automatically by GitHub Actions_ 🛠️" >> whatsapp_message.txt
+          echo "🚀 *New APK Build Available!*" > notification.txt
+          echo "" >> notification.txt
+          echo "*Repository:* ${{ github.repository }}" >> notification.txt
+          echo "*Branch:* ${{ github.ref_name }}" >> notification.txt
+          echo "*Build Number:* #${{ github.run_number }}" >> notification.txt
+          echo "" >> notification.txt
+          echo "📱 *APK Ready for Download*" >> notification.txt
+          echo "" >> notification.txt
+          echo "*Download Link:*" >> notification.txt
+          echo "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" >> notification.txt
+          echo "" >> notification.txt
+          echo "📞 *Contact:* +201156165689" >> notification.txt
 
-      - name: Upload WhatsApp Message
+      - name: Upload Notification
         uses: actions/upload-artifact@v4
         with:
-          name: whatsapp-notification
-          path: whatsapp_message.txt
+          name: notification
+          path: notification.txt
           retention-days: 7
 
-      - name: Success Notification
-        if: success()
+      - name: Build Summary
         run: |
-          echo "✅ Build Successful!" > success_message.txt
-          echo "" >> success_message.txt
-          echo "🎉 Flutter App Build Completed Successfully" >> success_message.txt
-          echo "" >> success_message.txt
-          echo "*Repository:* ${{ github.repository }}" >> success_message.txt
-          echo "*Branch:* ${{ github.ref_name }}" >> success_message.txt
-          echo "*Build Number:* #${{ github.run_number }}" >> success_message.txt
-          echo "" >> success_message.txt
-          echo "📱 APK Ready for Download" >> success_message.txt
-          echo "" >> success_message.txt
-          echo "*Download from:*" >> success_message.txt
-          echo "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" >> success_message.txt
-          echo "" >> success_message.txt
-          echo "🚀 Ready for Testing & Deployment!" >> success_message.txt
-          echo "" >> success_message.txt
-          echo "📞 *Contact:* +201156165689" >> success_message.txt
-
-      - name: Failure Notification
-        if: failure()
-        run: |
-          echo "❌ Build Failed!" > failure_message.txt
-          echo "" >> failure_message.txt
-          echo "🚨 Flutter App Build Failed" >> failure_message.txt
-          echo "" >> failure_message.txt
-          echo "*Repository:* ${{ github.repository }}" >> failure_message.txt
-          echo "*Branch:* ${{ github.ref_name }}" >> failure_message.txt
-          echo "*Build Number:* #${{ github.run_number }}" >> failure_message.txt
-          echo "" >> failure_message.txt
-          echo "*Error Details:* Check the GitHub Actions logs for more information." >> failure_message.txt
-          echo "" >> failure_message.txt
-          echo "🔍 *Next Steps:*" >> failure_message.txt
-          echo "• Review the build logs" >> success_message.txt
-          echo "• Fix any compilation errors" >> success_message.txt
-          echo "• Re-run the build" >> success_message.txt
-          echo "" >> success_message.txt
-          echo "*Build Logs:*" >> success_message.txt
-          echo "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> success_message.txt
-          echo "" >> success_message.txt
-          echo "📞 *Contact:* +201156165689" >> success_message.txt
-
-      - name: Upload All WhatsApp Messages as Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: whatsapp-notifications
-          path: |
-            whatsapp_message.txt
-            success_message.txt
-            failure_message.txt
-          retention-days: 7
-
-      - name: Clean up
-        if: always()
-        run: |
-          echo "Cleaning up build artifacts..."
-          echo "Build completed successfully!"
+          echo "✅ Build completed successfully!"
+          echo "📱 APK ready for testers"
+          echo "📥 Download from: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts"
