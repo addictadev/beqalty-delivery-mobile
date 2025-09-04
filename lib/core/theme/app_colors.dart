@@ -129,4 +129,19 @@ class AppColors {
   static const Color trackingCardShadow = Color(
     0x1A000000,
   ); // Subtle shadow for cards
+
+  // Order card specific colors
+  static const Color orderCardBackground = Color(0xFFFFFFFF);
+  static const Color orderCardBorder = Color(0xFFE5E7EB);
+  static const Color orderCardShadow = Color(0x1A000000);
+  static const Color orderEarningsGreen = Color(0xFF22C55E);
+  static const Color orderPickupIcon = Color(0xFF2D3043);
+  static const Color orderDeliveryIcon = Color(0xFFEF4444);
+
+  // Earnings screen specific colors
+  static const Color earningsGreen = Color(0xFF22C55E);
+  static const Color earningsCardShadow = Color(0x1A000000);
+  static const Color earningsSectionLabel = Color(0xFF9CA3AF);
+  static const Color earningsSearchBackground = Color(0xFFF9FAFB);
+  static const Color earningsSearchBorder = Color(0xFFE5E7EB);
 }
