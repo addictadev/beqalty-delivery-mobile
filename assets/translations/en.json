@@ -242,5 +242,15 @@
     "ok": "OK",
     "no_transactions_found": "No transactions found",
     "start_earning_message": "Start delivering to see your earnings here",
-    "older": "Older"
+    "older": "Older",
+    "set_amount": "SET AMOUNT",
+    "select_payout_method": "Select Payout Method:",
+    "bank_cards": "Bank Cards",
+    "add_bank_account": "Add Bank Account",
+    "confirm_withdrawal": "Confirm Withdrawal",
+    "please_enter_valid_amount": "Please enter a valid amount",
+    "please_select_bank_account": "Please select a bank account",
+    "insufficient_balance": "Insufficient balance",
+    "withdrawal_request_submitted": "Withdrawal request submitted successfully",
+    "add_bank_account_functionality_coming_soon": "Add bank account functionality coming soon"
   }

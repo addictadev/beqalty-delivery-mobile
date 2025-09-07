@@ -4,6 +4,8 @@ import 'package:localize_and_translate/localize_and_translate.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/responsive_utils.dart';
 import '../../../../core/utils/styles/styles.dart';
+import '../../../../core/navigation_services/navigation_manager.dart';
+import '../view/withdrawal_screen.dart';
 
 class WalletBalanceCard extends StatelessWidget {
   final double balance;
@@ -61,9 +63,7 @@ class WalletBalanceCard extends StatelessWidget {
 
   Widget _buildWithdrawButton(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-       
-      },
+      onTap: () => _handleWithdraw(context),
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: context.responsiveMargin,
@@ -115,5 +115,9 @@ class WalletBalanceCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _handleWithdraw(BuildContext context) {
+    NavigationManager.navigateTo(WithdrawalScreen(availableBalance: balance));
   }
 }

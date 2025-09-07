@@ -223,5 +223,15 @@
     "ok": "موافق",
     "no_transactions_found": "لا توجد معاملات",
     "start_earning_message": "ابدأ التوصيل لرؤية أرباحك هنا",
-    "older": "قديم"
+    "older": "قديم",
+    "set_amount": "تحديد المبلغ",
+    "select_payout_method": "اختر طريقة الدفع:",
+    "bank_cards": "البطاقات المصرفية",
+    "add_bank_account": "إضافة حساب بنكي",
+    "confirm_withdrawal": "تأكيد السحب",
+    "please_enter_valid_amount": "يرجى إدخال مبلغ صحيح",
+    "please_select_bank_account": "يرجى اختيار حساب بنكي",
+    "insufficient_balance": "رصيد غير كافي",
+    "withdrawal_request_submitted": "تم إرسال طلب السحب بنجاح",
+    "add_bank_account_functionality_coming_soon": "وظيفة إضافة حساب بنكي قريباً"
   }
