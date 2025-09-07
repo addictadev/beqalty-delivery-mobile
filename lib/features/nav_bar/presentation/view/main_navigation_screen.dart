@@ -8,6 +8,7 @@ import 'package:baqaltydeliveryapp/features/home/presentation/view/home_screen.d
 import 'package:baqaltydeliveryapp/features/nav_bar/business/cubit/nav_bar_cubit.dart';
 import 'package:baqaltydeliveryapp/features/nav_bar/business/models/nav_item_model.dart';
 import 'package:baqaltydeliveryapp/features/replacements/presentation/view/replace_items_screen.dart';
+import 'package:baqaltydeliveryapp/features/profile/presentation/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
@@ -33,7 +34,7 @@ class MainNavigationScreenBody extends StatelessWidget {
     EarningsScreen(),
     HistoryScreen(),
     ReplaceItemsScreen(),
-    Container(),
+    ProfileScreen(),
   ];
 
   @override
@@ -280,8 +281,8 @@ class _AnimatedNavItemState extends State<AnimatedNavItem>
             scale: _scaleAnimation.value,
             child: Container(
               padding: EdgeInsets.symmetric(
-                horizontal: context.responsiveMargin * 1.5,
-                vertical: context.responsiveMargin * 0.5,
+                horizontal: context.responsiveMargin * 2,
+                vertical: context.responsiveMargin * 0.8,
               ),
               decoration: BoxDecoration(
                 color: widget.navItem.isActive
@@ -317,7 +318,7 @@ class _AnimatedNavItemState extends State<AnimatedNavItem>
                           color: widget.navItem.isActive
                               ? _colorAnimation.value ?? AppColors.primary
                               : AppColors.textSecondary,
-                          width: context.responsiveIconSize,
+                          width: context.responsiveIconSize / 1.8,
                         ),
                       ),
 

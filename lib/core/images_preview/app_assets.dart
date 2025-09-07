@@ -22,5 +22,11 @@ class AppAssets {
   static const String historyIcon = "$_iconsPath/history.svg";
   static const String profileIcon = "$_iconsPath/profile_icon.svg";
   static const String motorcycleIcon = "$_iconsPath/motocycle_icon.svg";
+  static const String profileUserIcon = "$_iconsPath/user_profile.svg";
+  static const String profileWalletIcon = "$_iconsPath/wallet_icon_profile.svg";
+  static const String profilSettingsIcon = "$_iconsPath/settings_profile.svg";
+  static const String profilHelpIcon = "$_iconsPath/question_circle_profile.svg";
+  static const String profilContactIcon = "$_iconsPath/contact_profile.svg";
+
 
 }

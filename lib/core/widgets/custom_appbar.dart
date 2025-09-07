@@ -1,4 +1,3 @@
-import 'package:baqaltydeliveryapp/core/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../images_preview/app_assets.dart';
@@ -50,7 +49,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final defaultBackgroundColor = backgroundColor ?? Colors.transparent;
-    final defaultIconColor = iconColor ?? AppColors.textPrimary;
     final defaultTitleColor = titleColor ?? AppColors.textPrimary;
 
     return AppBar(
@@ -63,7 +61,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       scrolledUnderElevation: 0,
       title: _buildTitle(theme, defaultTitleColor),
-      leading: _buildLeading(context, defaultIconColor),
       actions: actions,
     );
   }
@@ -94,6 +91,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             theme.textTheme.titleLarge?.copyWith(
               color: defaultTitleColor,
               fontWeight: FontWeight.w600,
+
               fontSize: 18,
             ),
       );
@@ -107,18 +105,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       assetName: logoAssetPath ?? AppAssets.appIcon,
       height: 4.h,
     );
-  }
-
-  Widget? _buildLeading(BuildContext context, Color defaultIconColor) {
-    if (!showBackButton) {
-      return null;
-    }
-
-    return _buildBackButton(context, defaultIconColor);
-  }
-
-  Widget _buildBackButton(BuildContext context, Color defaultIconColor) {
-    return CustomBackButton(icon: Icons.chevron_left, size: 9.w);
   }
 
   @override

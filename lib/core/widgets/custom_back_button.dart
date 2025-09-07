@@ -6,8 +6,10 @@ class CustomBackButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final double? size;
   final IconData? icon;
+  final Color? color;
+  final Color? iconColor;
 
-  const CustomBackButton({super.key, this.onPressed, this.size, this.icon});
+  const CustomBackButton({super.key, this.onPressed, this.size, this.icon, this.color, this.iconColor});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class CustomBackButton extends StatelessWidget {
         // height: 5.w,
         margin: EdgeInsets.only(left: 0),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: color ?? Colors.white,
           shape: BoxShape.circle,
 
           boxShadow: [],
@@ -31,7 +33,7 @@ class CustomBackButton extends StatelessWidget {
             vertical: context.responsivePadding * .4,
           ),
           child: Center(
-            child: Icon(ic, color: Colors.black, size: 5.w),
+            child: Icon(ic, color: iconColor ?? Colors.black, size: 5.w),
           ),
         ),
       ),

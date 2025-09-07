@@ -10,6 +10,8 @@ class AppColors {
   static const Color overlayDark = Color(0x66000000);
   static const Color overlayQueue = Color(0xFFF6F7FD);
   static const Color overlayGray = Color(0xFFF6F7FD);
+  static const Color overlayGray2 = Color(0xFFE9E9FF);
+  static const Color overlayGray3 = Color(0xFFE9E9FF);
   // Text Colors
   static const Color textPrimary = Color(0xFF1A1A1A);
   static const Color textSecondary = Color(0xFF6C757D);
@@ -144,4 +146,13 @@ class AppColors {
   static const Color earningsSectionLabel = Color(0xFF9CA3AF);
   static const Color earningsSearchBackground = Color(0xFFF9FAFB);
   static const Color earningsSearchBorder = Color(0xFFE5E7EB);
+
+  // Profile screen specific colors
+  static const Color profileHeaderBackground = Color(0xFF2D3043);
+  static const Color profileStatsCardBackground = Color(0xFF3A3D52);
+  static const Color profileMenuBackground = Color(0xFFFFFFFF);
+  static const Color profileMenuIconBackground = Color(0xFFF3F4F6);
+  static const Color profileMenuIconColor = Color(0xFF2D3043);
+  static const Color profileMenuTextColor = Color(0xFF1F2937);
+  static const Color profileMenuDividerColor = Color(0xFFE5E7EB);
 }

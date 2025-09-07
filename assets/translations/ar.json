@@ -208,5 +208,17 @@
     "time_remaining": "متبقي 12 دقيقة",
     "search_earnings": "البحث في الأرباح",
     "today": "اليوم",
-    "yesterday": "اليوم السابق"
+    "yesterday": "اليوم السابق",
+    "ratings": "التقييمات",
+    "completed": "مكتمل",
+    "select_image_source": "اختر مصدر الصورة",
+    "camera": "الكاميرا",
+    "gallery": "المعرض",
+    "profile_updated_successfully": "تم تحديث الملف الشخصي بنجاح",
+    "error_updating_profile": "خطأ في تحديث الملف الشخصي",
+    "invalid_phone_number": "رقم هاتف غير صحيح",
+    "your_balance": "رصيدك",
+    "withdraw": "سحب",
+    "withdraw_functionality_coming_soon": "وظيفة السحب قريباً!",
+    "ok": "موافق"
   }

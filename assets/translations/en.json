@@ -227,5 +227,17 @@
     "time_remaining": "12 min left",
     "search_earnings": "Search Earnings",
     "today": "Today",
-    "yesterday": "Yesterday"
+    "yesterday": "Yesterday",
+    "ratings": "Ratings",
+    "completed": "Completed",
+    "select_image_source": "Select Image Source",
+    "camera": "Camera",
+    "gallery": "Gallery",
+    "profile_updated_successfully": "Profile updated successfully",
+    "error_updating_profile": "Error updating profile",
+    "invalid_phone_number": "Invalid phone number",
+    "your_balance": "Your Balance",
+    "withdraw": "Withdraw",
+    "withdraw_functionality_coming_soon": "Withdraw functionality coming soon!",
+    "ok": "OK"
   }

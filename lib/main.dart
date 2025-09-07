@@ -7,7 +7,7 @@ import 'package:localize_and_translate/localize_and_translate.dart';
 import 'core/di/service_locator.dart';
 import 'core/services/shared_preferences_service.dart';
 import 'my_app.dart';
-
+ 
 Future<void> main() async {
   runZonedGuarded(
     () async {
