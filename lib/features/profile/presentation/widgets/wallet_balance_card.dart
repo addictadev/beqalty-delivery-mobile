@@ -61,7 +61,9 @@ class WalletBalanceCard extends StatelessWidget {
 
   Widget _buildWithdrawButton(BuildContext context) {
     return GestureDetector(
-      onTap: isLoading ? null : onWithdraw,
+      onTap: () {
+       
+      },
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: context.responsiveMargin,

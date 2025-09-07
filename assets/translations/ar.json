@@ -220,5 +220,8 @@
     "your_balance": "رصيدك",
     "withdraw": "سحب",
     "withdraw_functionality_coming_soon": "وظيفة السحب قريباً!",
-    "ok": "موافق"
+    "ok": "موافق",
+    "no_transactions_found": "لا توجد معاملات",
+    "start_earning_message": "ابدأ التوصيل لرؤية أرباحك هنا",
+    "older": "قديم"
   }

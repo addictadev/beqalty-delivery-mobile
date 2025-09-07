@@ -239,5 +239,8 @@
     "your_balance": "Your Balance",
     "withdraw": "Withdraw",
     "withdraw_functionality_coming_soon": "Withdraw functionality coming soon!",
-    "ok": "OK"
+    "ok": "OK",
+    "no_transactions_found": "No transactions found",
+    "start_earning_message": "Start delivering to see your earnings here",
+    "older": "Older"
   }
