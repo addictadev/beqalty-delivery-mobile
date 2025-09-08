@@ -57,17 +57,17 @@ class BankAccountCard extends StatelessWidget {
                     children: [
                       Text(
                         bankAccount.accountHolderName,
-                        style: TextStyles.textViewMedium16.copyWith(
-                          color: AppColors.textPrimary,
-                          fontSize: 4.w,
+                        style: TextStyles.textViewRegular14.copyWith(
+                          color: AppColors.textSecondary,
+                          fontSize: 3.2.w,
                         ),
                       ),
                       SizedBox(height: context.responsiveMargin * 0.3),
                       Text(
                         bankAccount.maskedAccountNumber,
-                        style: TextStyles.textViewRegular14.copyWith(
-                          color: AppColors.textSecondary,
-                          fontSize: 3.2.w,
+                        style: TextStyles.textViewMedium16.copyWith(
+                          color: AppColors.textPrimary,
+                          fontSize: 4.w,
                         ),
                       ),
                     ],
@@ -89,56 +89,19 @@ class BankAccountCard extends StatelessWidget {
       width: 12.w,
       height: 12.w,
       decoration: BoxDecoration(
-        color: _getBankLogoBackgroundColor(),
+        color: Colors.grey.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(
           context.responsiveBorderRadius * 0.8,
         ),
-        border: Border.all(color: AppColors.borderLight, width: 1),
       ),
-      child: Center(child: _getBankLogoIcon()),
-    );
-  }
-
-  Color _getBankLogoBackgroundColor() {
-    switch (bankAccount.cardType) {
-      case BankCardType.paypal:
-        return const Color(0xFF0070BA).withValues(alpha: 0.1);
-      case BankCardType.mastercard:
-        return const Color(0xFFEB001B).withValues(alpha: 0.1);
-      case BankCardType.visa:
-        return const Color(0xFF1A1F71).withValues(alpha: 0.1);
-      case BankCardType.other:
-        return AppColors.borderLight;
-    }
-  }
-
-  Widget _getBankLogoIcon() {
-    switch (bankAccount.cardType) {
-      case BankCardType.paypal:
-        return Icon(
+      child: Center(
+        child: Icon(
           Icons.account_balance_wallet,
-          color: const Color(0xFF0070BA),
+          color: AppColors.primary,
           size: 6.w,
-        );
-      case BankCardType.mastercard:
-        return Icon(
-          Icons.credit_card,
-          color: const Color(0xFFEB001B),
-          size: 6.w,
-        );
-      case BankCardType.visa:
-        return Icon(
-          Icons.credit_card,
-          color: const Color(0xFF1A1F71),
-          size: 6.w,
-        );
-      case BankCardType.other:
-        return Icon(
-          Icons.account_balance,
-          color: AppColors.textSecondary,
-          size: 6.w,
-        );
-    }
+        ),
+      ),
+    );
   }
 
   Widget _buildRadioButton(BuildContext context) {

@@ -1,3 +1,5 @@
+import 'package:baqaltydeliveryapp/core/navigation_services/navigation_manager.dart';
+import 'package:baqaltydeliveryapp/features/profile/presentation/view/payment_success_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
@@ -24,7 +26,6 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
   double _withdrawalAmount = 0;
   BankAccount? _selectedBankAccount;
   List<BankAccount> _bankAccounts = [];
-  bool _isLoading = false;
 
   @override
   void initState() {
@@ -51,69 +52,6 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
     });
   }
 
-  void _onAddBankAccount() {
-    // TODO: Navigate to add bank account screen
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('add_bank_account_functionality_coming_soon'.tr()),
-        backgroundColor: AppColors.primary,
-      ),
-    );
-  }
-
-  Future<void> _confirmWithdrawal() async {
-    if (_withdrawalAmount <= 0) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('please_enter_valid_amount'.tr()),
-          backgroundColor: AppColors.error,
-        ),
-      );
-      return;
-    }
-
-    if (_selectedBankAccount == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('please_select_bank_account'.tr()),
-          backgroundColor: AppColors.error,
-        ),
-      );
-      return;
-    }
-
-    if (_withdrawalAmount > widget.availableBalance) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('insufficient_balance'.tr()),
-          backgroundColor: AppColors.error,
-        ),
-      );
-      return;
-    }
-
-    setState(() {
-      _isLoading = true;
-    });
-
-    // TODO: Implement actual withdrawal API call
-    await Future.delayed(const Duration(seconds: 2));
-
-    setState(() {
-      _isLoading = false;
-    });
-
-    // Show success message and navigate back
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('withdrawal_request_submitted'.tr()),
-        backgroundColor: AppColors.success,
-      ),
-    );
-
-    Navigator.of(context).pop();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,7 +60,14 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
         children: [
           // Header
           _buildHeader(context),
-
+          Center(
+            child: Text(
+              'set_amount'.tr(),
+              style: TextStyles.textViewBold18.copyWith(
+                color: AppColors.textPrimary,
+              ),
+            ),
+          ),
           // Content
           Expanded(
             child: SingleChildScrollView(
@@ -168,17 +113,8 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
       child: Row(
         children: [
           CustomBackButton(icon: Icons.chevron_left, size: 40),
-          Expanded(
-            child: Center(
-              child: Text(
-                'set_amount'.tr(),
-                style: TextStyles.textViewBold18.copyWith(
-                  color: AppColors.textPrimary,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: 10.w), // Balance the back button
+
+          SizedBox(width: 10.w),
         ],
       ),
     );
@@ -213,8 +149,8 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
 
         Text(
           'bank_cards'.tr(),
-          style: TextStyles.textViewMedium14.copyWith(
-            color: AppColors.textSecondary,
+          style: TextStyles.textViewBold16.copyWith(
+            color: AppColors.textPrimary,
             fontSize: 3.5.w,
           ),
         ),
@@ -235,7 +171,7 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
 
   Widget _buildAddBankAccountButton(BuildContext context) {
     return GestureDetector(
-      onTap: _onAddBankAccount,
+      onTap: () {},
       child: Text(
         '+ ${'add_bank_account'.tr()}',
         style: TextStyles.textViewMedium14.copyWith(
@@ -247,8 +183,7 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
   }
 
   Widget _buildBottomButton(BuildContext context) {
-    return Container(
-      width: double.infinity,
+    return Padding(
       padding: EdgeInsets.only(
         left: context.responsivePadding,
         right: context.responsivePadding,
@@ -256,20 +191,11 @@ class _WithdrawalScreenState extends State<WithdrawalScreen> {
         bottom:
             context.responsiveMargin + MediaQuery.of(context).padding.bottom,
       ),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.shadowLight,
-            blurRadius: 10,
-            offset: const Offset(0, -2),
-          ),
-        ],
-      ),
       child: PrimaryButton(
         text: 'confirm_withdrawal'.tr(),
-        onPressed: _isLoading ? null : _confirmWithdrawal,
-        isLoading: _isLoading,
+        onPressed: () {
+          NavigationManager.navigateTo(const PaymentSuccessScreen());
+        },
         color: AppColors.primary,
         borderRadius: context.responsiveBorderRadius * 6,
         textStyle: TextStyles.textViewMedium16.copyWith(color: AppColors.white),

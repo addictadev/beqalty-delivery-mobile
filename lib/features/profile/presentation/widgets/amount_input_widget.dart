@@ -1,7 +1,6 @@
+import 'package:baqaltydeliveryapp/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/utils/responsive_utils.dart';
 import '../../../../core/utils/styles/styles.dart';
 
 class AmountInputWidget extends StatelessWidget {
@@ -21,44 +20,46 @@ class AmountInputWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(context.responsivePadding),
+      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          // Decrease button
           _buildAmountButton(
             context,
             icon: Icons.remove,
             onPressed: _canDecrease() ? () => _decreaseAmount() : null,
+            isEnabled: _canDecrease(),
           ),
 
-          // Amount display
           Expanded(
             child: Center(
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     amount.toStringAsFixed(0),
                     style: TextStyles.textViewBold24.copyWith(
                       color: AppColors.primary,
-                      fontSize: 12.w,
+                      fontSize: 14.w,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
+                  SizedBox(height: 0.5.h),
                   Container(
-                    width: 20.w,
-                    height: 2,
-                    color: AppColors.primary.withValues(alpha: 0.3),
+                    width: 60.w,
+                    height: 1,
+                    color: AppColors.borderLight,
                   ),
                 ],
               ),
             ),
           ),
 
-          // Increase button
           _buildAmountButton(
             context,
             icon: Icons.add,
             onPressed: _canIncrease() ? () => _increaseAmount() : null,
+            isEnabled: _canIncrease(),
           ),
         ],
       ),
@@ -69,6 +70,7 @@ class AmountInputWidget extends StatelessWidget {
     BuildContext context, {
     required IconData icon,
     VoidCallback? onPressed,
+    required bool isEnabled,
   }) {
     return GestureDetector(
       onTap: onPressed,
@@ -76,29 +78,17 @@ class AmountInputWidget extends StatelessWidget {
         width: 12.w,
         height: 12.w,
         decoration: BoxDecoration(
-          color: onPressed != null ? AppColors.white : AppColors.borderLight,
-          shape: BoxShape.circle,
-          border: Border.all(
-            color: onPressed != null
-                ? AppColors.borderLight
-                : AppColors.borderLight,
-            width: 1,
-          ),
-          boxShadow: onPressed != null
-              ? [
-                  BoxShadow(
-                    color: AppColors.shadowLight,
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
-                  ),
-                ]
-              : null,
+          color: isEnabled
+              ? (icon == Icons.add ? AppColors.primary : Colors.transparent)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: AppColors.borderDark, width: 1),
         ),
         child: Icon(
           icon,
-          color: onPressed != null
-              ? AppColors.textPrimary
-              : AppColors.textLight,
+          color: isEnabled
+              ? (icon == Icons.add ? Colors.white : AppColors.textTertiary)
+              : AppColors.textTertiary,
           size: 6.w,
         ),
       ),

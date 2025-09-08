@@ -62,8 +62,10 @@ class WalletBalanceCard extends StatelessWidget {
   }
 
   Widget _buildWithdrawButton(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _handleWithdraw(context),
+    return InkWell(
+      onTap: () => NavigationManager.navigateTo(
+        WithdrawalScreen(availableBalance: balance),
+      ),
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: context.responsiveMargin,
@@ -115,9 +117,5 @@ class WalletBalanceCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void _handleWithdraw(BuildContext context) {
-    NavigationManager.navigateTo(WithdrawalScreen(availableBalance: balance));
   }
 }

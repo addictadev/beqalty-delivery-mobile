@@ -11,6 +11,7 @@ import '../widgets/profile_header.dart';
 import '../widgets/profile_stats_card.dart';
 import '../widgets/profile_menu_item.dart';
 import 'my_account_screen.dart';
+import 'settings_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -120,7 +121,9 @@ class ProfileScreen extends StatelessWidget {
                     ProfileMenuItem(
                       icon: AppAssets.profilSettingsIcon,
                       title: 'settings'.tr(),
-                      onTap: () {},
+                      onTap: () {
+                        NavigationManager.navigateTo(const SettingsScreen());
+                      },
                     ),
                     ProfileMenuItem(
                       icon: AppAssets.profilHelpIcon,
