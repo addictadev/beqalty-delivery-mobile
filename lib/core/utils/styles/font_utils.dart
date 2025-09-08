@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class AppFont {
-  static const String fontFamily = "ReadexPro";
 
   static const FontWeight extraLight = FontWeight.w200;
   static const FontWeight light = FontWeight.w300;

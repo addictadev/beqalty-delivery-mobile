@@ -8,6 +8,11 @@ import '../../../../core/utils/styles/styles.dart';
 import '../../../../core/navigation_services/navigation_manager.dart';
 import '../widgets/settings_menu_item.dart';
 import 'privacy_policy_screen.dart';
+import 'change_password_screen.dart';
+import 'notifications_screen.dart';
+import 'language_selection_bottom_sheet.dart';
+import '../../../../core/widgets/logout_confirmation_dialog.dart';
+import '../../../../core/widgets/delete_account_confirmation_dialog.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -22,14 +27,14 @@ class SettingsScreen extends StatelessWidget {
           padding: EdgeInsets.all(context.responsivePadding),
           child: Column(
             children: [
-              SizedBox(height: context.responsiveMargin * 4),
+              SizedBox(height: context.responsiveMargin),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomBackButton(icon: Icons.chevron_left, size: 40),
                   Text(
                     'settings'.tr(),
-                    style: TextStyles.textViewBold18.copyWith(
+                    style: TextStyles.textViewMedium18.copyWith(
                       color: AppColors.textPrimary,
                     ),
                   ),
@@ -89,14 +94,31 @@ class SettingsScreen extends StatelessWidget {
   Widget _buildGeneralSection(BuildContext context) {
     return Column(
       children: [
-        SettingsMenuItem(title: "reset_password".tr(), onTap: () {}),
-        SettingsMenuItem(title: "notifications".tr(), onTap: () {}),
-        SettingsMenuItem(title: "language".tr(), onTap: () {}),
+        SettingsMenuItem(
+          title: "reset_password".tr(),
+          onTap: () {
+            NavigationManager.navigateTo(const ChangePasswordScreen());
+          },
+        ),
+        SettingsMenuItem(
+          title: "notifications".tr(),
+          onTap: () {
+            NavigationManager.navigateTo(const NotificationsScreen());
+          },
+        ),
+        SettingsMenuItem(
+          title: "language".tr(),
+          onTap: () {
+            _showLanguageSelectionBottomSheet(context);
+          },
+        ),
         SettingsMenuItem(
           title: "delete_account".tr(),
           type: SettingsMenuItemType.destructive,
           showArrow: false,
-          onTap: () {},
+          onTap: () {
+            _showDeleteAccountDialog(context);
+          },
         ),
       ],
     );
@@ -116,7 +138,9 @@ class SettingsScreen extends StatelessWidget {
   Widget _buildLogoutButton(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(context.responsiveBorderRadius * 6),
-      onTap: () {},
+      onTap: () {
+        _showLogoutDialog(context);
+      },
       child: Container(
         width: double.infinity,
         padding: EdgeInsets.symmetric(
@@ -153,5 +177,62 @@ class SettingsScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _showLanguageSelectionBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return const LanguageSelectionBottomSheet();
+      },
+    );
+  }
+
+  void _showLogoutDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return LogoutConfirmationDialog(
+          onConfirm: () {
+            _performLogout();
+          },
+          onCancel: () {
+            // Dialog will be closed automatically
+          },
+        );
+      },
+    );
+  }
+
+  void _showDeleteAccountDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return DeleteAccountConfirmationDialog(
+          onConfirm: () {
+            _performDeleteAccount();
+          },
+          onCancel: () {
+            // Dialog will be closed automatically
+          },
+        );
+      },
+    );
+  }
+
+  void _performLogout() {
+    // TODO: Implement logout logic
+    // This should clear user data, tokens, and navigate to login screen
+    print('Logout confirmed');
+  }
+
+  void _performDeleteAccount() {
+    // TODO: Implement delete account logic
+    // This should delete user account and all associated data
+    print('Delete account confirmed');
   }
 }

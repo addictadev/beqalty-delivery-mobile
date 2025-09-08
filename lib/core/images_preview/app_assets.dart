@@ -29,6 +29,8 @@ class AppAssets {
   static const String profilContactIcon = "$_iconsPath/contact_profile.svg";
   static const String ticketImg = "$_imagesPath/Receipt.png";
   static const String sucessIcon = "$_iconsPath/sucess_icon.svg";
+  static const String logoutIcon = "$_iconsPath/logout_icon.svg";
+  static const String deleteAccountIcon = "$_iconsPath/delete_acc_icon.svg";
 
 
 
