@@ -197,10 +197,9 @@ class SettingsScreen extends StatelessWidget {
       builder: (BuildContext context) {
         return LogoutConfirmationDialog(
           onConfirm: () {
-            _performLogout();
           },
           onCancel: () {
-            // Dialog will be closed automatically
+            
           },
         );
       },
@@ -214,25 +213,14 @@ class SettingsScreen extends StatelessWidget {
       builder: (BuildContext context) {
         return DeleteAccountConfirmationDialog(
           onConfirm: () {
-            _performDeleteAccount();
           },
           onCancel: () {
-            // Dialog will be closed automatically
+            
           },
         );
       },
     );
   }
 
-  void _performLogout() {
-    // TODO: Implement logout logic
-    // This should clear user data, tokens, and navigate to login screen
-    print('Logout confirmed');
-  }
 
-  void _performDeleteAccount() {
-    // TODO: Implement delete account logic
-    // This should delete user account and all associated data
-    print('Delete account confirmed');
-  }
 }

@@ -2,6 +2,7 @@ import 'package:baqaltydeliveryapp/core/images_preview/app_assets.dart';
 import 'package:baqaltydeliveryapp/core/images_preview/custom_svg_img.dart';
 import 'package:baqaltydeliveryapp/core/navigation_services/navigation_manager.dart';
 import 'package:baqaltydeliveryapp/core/theme/app_colors.dart';
+import 'package:baqaltydeliveryapp/core/utils/font_family_utils.dart';
 import 'package:baqaltydeliveryapp/core/utils/responsive_utils.dart';
 import 'package:baqaltydeliveryapp/core/utils/styles/font_utils.dart';
 import 'package:baqaltydeliveryapp/core/widgets/custom_back_button.dart';
@@ -175,13 +176,19 @@ class _LoginScreenState extends State<LoginScreen> {
             color: AppColors.textSecondary,
           ),
           children: [
-            TextSpan(text: "dont_have_account".tr()),
+            TextSpan(
+              text: "dont_have_account".tr(),
+              style: TextStyle(
+                fontFamily: FontFamilyUtils.getCurrentFontFamily(),
+              ),
+            ),
             TextSpan(
               text: "register_now".tr(),
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: AppColors.primary,
+                fontFamily: FontFamilyUtils.getCurrentFontFamily(),
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {

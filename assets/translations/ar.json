@@ -57,6 +57,15 @@
     "saved_items": "العناصر المحفوظة",
     "settings": "الإعدادات",
     "help_center": "مركز المساعدة",
+    "have_burning_question": "هل لديك سؤال محير؟",
+    "search_faqs": "البحث في الأسئلة الشائعة",
+    "topics": "المواضيع",
+    "view_all": "عرض الكل",
+    "how_place_order": "كيف يمكنني تقديم طلب؟",
+    "how_place_order_answer": "تصفح المنتجات، أضف العناصر إلى سلة التسوق، اختر طريقة الدفع، وأكد طلبك.",
+    "what_payment_methods": "ما هي طرق الدفع المقبولة؟",
+    "what_payment_methods_answer": "نقبل بطاقات الائتمان، الدفع عند الاستلام، ومحفظة بقالتي.",
+    "view_topic": "عرض الموضوع",
     "contact": "اتصل بنا",
     "navigate": "تنقل",
     "general": "عام",
@@ -278,11 +287,10 @@
     "arabic": "العربية",
     "language_changed": "تم تغيير اللغة بنجاح",
     "restart_required": "يرجى إعادة تشغيل التطبيق لتطبيق تغييرات اللغة",
-    "cancel": "إلغاء",
     "restart": "إعادة تشغيل",
-    "delete_account": "حذف الحساب",
-    "logout": "تسجيل الخروج",
+   
     "delete_account_confirmation": "هل أنت متأكد من حذف حسابك؟",
     "logout_confirmation": "هل أنت متأكد من تسجيل الخروج من حسابك؟",
-    "copyright": "بقالتى © 2025 الإصدار 1.0"
+    "copyright": "بقالتى © 2025 الإصدار 1.0",
+    "back_to_login": "العودة إلى تسجيل الدخول"
   }

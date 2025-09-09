@@ -7,7 +7,8 @@ import 'package:localize_and_translate/localize_and_translate.dart';
 import 'core/di/service_locator.dart';
 import 'core/services/shared_preferences_service.dart';
 import 'my_app.dart';
- 
+ import 'package:flutter_phoenix/flutter_phoenix.dart';
+
 Future<void> main() async {
   runZonedGuarded(
     () async {
@@ -45,7 +46,8 @@ Future<void> main() async {
       await SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,
       ]);
-      runApp(MyApp());
+        // Bloc.observer = MyBlocObserver();
+    runApp(Phoenix(child: MyApp()));
     },
     (error, stackTrace) {
       log('Caught error: $error');

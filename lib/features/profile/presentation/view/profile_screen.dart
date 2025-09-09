@@ -1,4 +1,5 @@
 import 'package:baqaltydeliveryapp/core/images_preview/app_assets.dart';
+import 'package:baqaltydeliveryapp/features/profile/presentation/view/help_center_screen.dart';
 import 'package:baqaltydeliveryapp/features/profile/presentation/view/my_wallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
@@ -128,7 +129,9 @@ class ProfileScreen extends StatelessWidget {
                     ProfileMenuItem(
                       icon: AppAssets.profilHelpIcon,
                       title: 'help_center'.tr(),
-                      onTap: () {},
+                      onTap: () {
+                        NavigationManager.navigateTo(const HelpCenterScreen());
+                      },
                     ),
                     ProfileMenuItem(
                       icon: AppAssets.profilContactIcon,

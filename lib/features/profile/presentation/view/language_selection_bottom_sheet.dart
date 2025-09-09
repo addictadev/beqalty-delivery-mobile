@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:sizer/sizer.dart';
-import 'package:flutter/services.dart';
-
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/responsive_utils.dart';
 import '../../../../core/utils/styles/styles.dart';
@@ -21,6 +20,7 @@ class LanguageSelectionBottomSheet extends StatefulWidget {
 class _LanguageSelectionBottomSheetState
     extends State<LanguageSelectionBottomSheet> {
   String _selectedLanguage = 'en';
+  bool _isChangingLanguage = false;
 
   @override
   void initState() {
@@ -35,101 +35,43 @@ class _LanguageSelectionBottomSheetState
   }
 
   Future<void> _changeLanguage(String languageCode) async {
-    if (_selectedLanguage == languageCode) return;
+    if (_selectedLanguage == languageCode || _isChangingLanguage) return;
+
+    if (!mounted) return;
 
     setState(() {
       _selectedLanguage = languageCode;
+      _isChangingLanguage = true;
     });
 
-    // Save language preference
-    await SharedPrefsHelper.setLanguage(languageCode);
+    try {
+      await SharedPrefsHelper.setLanguage(languageCode);
 
-    // Change language in the app
-    await LocalizeAndTranslate.setLanguageCode(languageCode);
+      await LocalizeAndTranslate.setLanguageCode(languageCode);
 
-    if (mounted) {
-      // Show success message with proper font family
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            "language_changed".tr(),
-            style: TextStyles.textViewMedium16.copyWith(
-              color: AppColors.white,
-              fontFamily: FontFamilyUtils.getCurrentFontFamily(),
-            ),
-          ),
-          backgroundColor: AppColors.success,
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(context.responsiveBorderRadius),
-          ),
-          margin: EdgeInsets.all(context.responsivePadding),
-        ),
-      );
+      if (!mounted) return;
 
-      _showRestartDialog(context);
+      Navigator.of(context).pop();
+
+      await Future.delayed(const Duration(milliseconds: 100));
+
+      if (mounted) {
+        Phoenix.rebirth(context);
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _selectedLanguage = SharedPrefsHelper.getLanguage();
+          _isChangingLanguage = false;
+        });
+      }
     }
   }
 
-  void _showRestartDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: AppColors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              context.responsiveBorderRadius * 2,
-            ),
-          ),
-          title: Text(
-            "restart_required".tr(),
-            style: TextStyles.textViewBold18.copyWith(
-              color: AppColors.textPrimary,
-              fontFamily: FontFamilyUtils.getCurrentFontFamily(),
-            ),
-          ),
-          content: Text(
-            "restart_required".tr(),
-            style: TextStyles.textViewRegular14.copyWith(
-              color: AppColors.textSecondary,
-              fontFamily: FontFamilyUtils.getCurrentFontFamily(),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close dialog
-                Navigator.of(context).pop(); // Close bottom sheet
-              },
-              child: Text(
-                "cancel".tr(),
-                style: TextStyles.textViewMedium16.copyWith(
-                  color: AppColors.textLight,
-                  fontFamily: FontFamilyUtils.getCurrentFontFamily(),
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close dialog
-                Navigator.of(context).pop(); // Close bottom sheet
-                // Restart the app
-                SystemNavigator.pop();
-              },
-              child: Text(
-                "restart".tr(),
-                style: TextStyles.textViewMedium16.copyWith(
-                  color: AppColors.primary,
-                  fontFamily: FontFamilyUtils.getCurrentFontFamily(),
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-    );
+  @override
+  void dispose() {
+    _isChangingLanguage = false;
+    super.dispose();
   }
 
   @override
@@ -171,7 +113,9 @@ class _LanguageSelectionBottomSheetState
             title: "english".tr(),
             subtitle: "English",
             value: _selectedLanguage == 'en',
-            onChanged: (value) => _changeLanguage('en'),
+            onChanged: _isChangingLanguage
+                ? (value) {}
+                : (value) => _changeLanguage('en'),
             titleFontFamily: FontFamilyUtils.getFontFamilyForLanguage('en'),
             subtitleFontFamily: FontFamilyUtils.getFontFamilyForLanguage('en'),
           ),
@@ -180,7 +124,9 @@ class _LanguageSelectionBottomSheetState
             title: "arabic".tr(),
             subtitle: "العربية",
             value: _selectedLanguage == 'ar',
-            onChanged: (value) => _changeLanguage('ar'),
+            onChanged: _isChangingLanguage
+                ? (value) {}
+                : (value) => _changeLanguage('ar'),
             showDivider: false,
             titleFontFamily: FontFamilyUtils.getFontFamilyForLanguage('ar'),
             subtitleFontFamily: FontFamilyUtils.getFontFamilyForLanguage('ar'),
